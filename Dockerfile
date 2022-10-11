@@ -10,6 +10,7 @@ EXPOSE 8080
 LABEL Documentation 'This is a webserver implementation'
 
 ONBUILD ADD src /var/www/html
+RUN touch /tmp/v1
 
 CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
 
