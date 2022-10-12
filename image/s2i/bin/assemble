@@ -29,5 +29,4 @@ echo "---> Building application from source..."
 cd /tmp/src
 make
 make install
-make clean
 cp -rf content/* /var/www/html
