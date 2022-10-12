@@ -12,8 +12,6 @@
 using namespace std;
  
 
-//change
-//change
 void ctrl_loop(int server, sockaddr_in *peer_addr) {
      
     socklen_t addr_size;
