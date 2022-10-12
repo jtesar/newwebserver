@@ -30,7 +30,6 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
     mv $i /tmp/src
   fi
   done
-  mv /tmp/artifacts/* /tmp/src
   shopt -u dotglob
   popd
 fi
