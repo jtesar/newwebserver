@@ -1,9 +1,12 @@
 FROM registry.access.redhat.com/ubi9/ubi
-RUN dnf install -y httpd /usr/bin/ps /usr/bin/lsof /usr/bin/curl /usr/sbin/ip make && \
-    useradd myuser && \
-    chmod o+rwx /run/httpd /var/lib/httpd /var/log/httpd
+RUN dnf install -y httpd /usr/bin/ps /usr/bin/lsof /usr/bin/curl /usr/sbin/ip make g++ && \
+    chmod g+rwx /usr/bin && \
+    mkdir /var/www/html && \
+    chmod g+rwx /var/www/html
+
 
 COPY rootfs /
+
 EXPOSE 8080
 LABEL Documentation 'This is a webserver implementation'
 
