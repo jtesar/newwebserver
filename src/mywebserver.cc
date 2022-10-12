@@ -18,7 +18,7 @@ int main()
     char buffer1[256], buffer2[1024];
     int server = socket(AF_INET, SOCK_STREAM, 0);
     if (server < 0)
-        printf("Error in server creating\n");
+        printf("Error in server creating!\n");
     else
         printf("Server Created\n");
          
