@@ -28,7 +28,7 @@ int main()
     // This ip address will change according to the machine
     my_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
      
-    my_addr.sin_port = htons(8081);
+    my_addr.sin_port = htons(8080);
  
     if (bind(server, (struct sockaddr*) &my_addr, sizeof(my_addr)) == 0)
         printf("Binded Correctly\n");
