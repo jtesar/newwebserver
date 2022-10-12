@@ -13,12 +13,20 @@ if [[ "$1" == "-h" ]]; then
 fi
 
 # Restore artifacts from the previous build (if they exist).
-#
+# 
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  pushd /tmp/artifacts
   echo "---> Restoring build artifacts..."
   shopt -s dotglob
+  for i in /tmp/artifacts/*; do
+    if ! [  "$(diff $i /tmp/src/$i 2>/dev/null)" ]; then
+	echo $i is the same, copying from artifacts
+	cp $i /tmp/src
+    fi
+  done
   mv /tmp/artifacts/* /tmp/src
   shopt -u dotglob
+  popd
 fi
 
 echo "---> Installing application source..."

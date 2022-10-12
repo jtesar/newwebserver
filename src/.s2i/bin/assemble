@@ -18,7 +18,7 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   pushd /tmp/artifacts
   echo "---> Restoring build artifacts..."
   shopt -s dotglob
-  for i in /tmp/artifacts/*; do
+  for i in *; do
   diff $i /tmp/src/$i
   if  [ $? == 0  ]; then
     echo $i is the same, copying from artifacts

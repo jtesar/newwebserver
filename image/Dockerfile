@@ -14,7 +14,7 @@ FROM registry.access.redhat.com/ubi9/ubi
 
 # TODO: Install required packages here:
 # RUN yum install -y ... && yum clean all -y
-RUN dnf install -y /usr/bin/ps /usr/bin/lsof /usr/bin/curl /usr/sbin/ip make g++ && \
+RUN dnf install -y /usr/bin/ps /usr/bin/lsof /usr/bin/curl /usr/sbin/ip /usr/bin/diff make g++ && \
     chmod g+rwx /usr/bin && \
     mkdir -p /var/www/html && \
     chmod g+rwx /var/www/html && \
