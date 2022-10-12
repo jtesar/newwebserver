@@ -26,7 +26,7 @@ int main()
     my_addr.sin_addr.s_addr = INADDR_ANY;
      
     // This ip address will change according to the machine
-    my_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    my_addr.sin_addr.s_addr = inet_addr("0.0.0.0");
      
     my_addr.sin_port = htons(8080);
  
