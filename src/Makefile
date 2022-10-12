@@ -1,5 +1,9 @@
-mysebserver: mywebserver.cc control_loop.o
-	g++ -o mywebserver mywebserver.cc control_loop.o
+mysebserver: mywebserver.o control_loop.o
+	g++ -o mywebserver mywebserver.o control_loop.o
+
+mywebserver.o: mywebserver.cc
+	g++ -c mywebserver.cc
+
 
 control_loop.o: control_loop.cc
 	g++ -c control_loop.cc
