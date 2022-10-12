@@ -18,13 +18,17 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   pushd /tmp/artifacts
   echo "---> Restoring build artifacts..."
   shopt -s dotglob
-  for i in /tmp/artifacts/*; do
-    if ! [  "$(diff $i /tmp/src/$i 2>/dev/null)" ]; then
-	echo $i is the same, copying from artifacts
-	cp $i /tmp/src
-    fi
+  
+  if [ "$(ls *.o 2>/dev/null)" ]; then 
+    mv *.o /tmp/src
+  fi
+
+  for i in *.cc *.h; do
+  if  ! [ "$(diff $i /tmp/src/$i 2>/dev/null)"  ]; then
+    echo $i is the same, copying from artifacts
+    mv $i /tmp/src
+  fi
   done
-  mv /tmp/artifacts/* /tmp/src
   shopt -u dotglob
   popd
 fi
