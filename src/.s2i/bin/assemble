@@ -1,0 +1,41 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'dd' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 'dd' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+# Restore artifacts from the previous build (if they exist).
+# 
+if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  pushd /tmp/artifacts
+  echo "---> Restoring build artifacts..."
+  shopt -s dotglob
+  for i in /tmp/artifacts/*; do
+  diff $i /tmp/src/$i
+  if  [ $? == 0  ]; then
+    echo $i is the same, copying from artifacts
+    cp -f $i /tmp/src
+    fi
+  done
+  mv /tmp/artifacts/* /tmp/src
+  shopt -u dotglob
+  popd
+fi
+
+echo "---> Installing application source..."
+#cp -Rf /tmp/src/. ./
+
+echo "---> Building application from source..."
+# TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
+cd /tmp/src
+make
+make install
+cp -rf content/* /var/www/html
